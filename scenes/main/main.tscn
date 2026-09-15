@@ -37,11 +37,9 @@ tile_map_data = PackedByteArray("AAAuABoAAAAAAAQAAAAuABkAAAAAAAQAAAAuABgAAAAAAAQ
 tile_set = ExtResource("1_iuonh")
 
 [node name="Entities" type="Node2D" parent="." unique_id=2129323083 groups=["entities_layer"]]
-visible = false
 y_sort_enabled = true
 
-[node name="Player" parent="Entities" unique_id=1104714872 groups=["player"] instance=ExtResource("1_hyk8p")]
+[node name="Player" parent="Entities" unique_id=1104714872 instance=ExtResource("1_hyk8p")]
 position = Vector2(333, 169)
 
 [node name="Foreground" type="Node2D" parent="." unique_id=990354769 groups=["foreground_layer"]]
-visible = false

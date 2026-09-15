@@ -32,14 +32,14 @@ func _get_movement_vector():
 func _check_deal_damage():
 	if number_of_attackers == 0 || !damage_interval_timer.is_stopped():
 		return
-	
-	$HealthComponent.damage(1)
+	$HealthComponent._damage(1)
 	print($HealthComponent.current_health)
 	damage_interval_timer.start()
 
 
 func _on_hitbox_area_body_entered(other_body: Node2D):
 	number_of_attackers +=1
+	_check_deal_damage()
 
 
 func _on_hitbox_area_body_exited(other_body: Node2D):
