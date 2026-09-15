@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://df5jjsa3epoe1"]
+
+[ext_resource type="Script" uid="uid://kq4u08kvalwc" path="res://scenes/game_object/player/player.gd" id="1_dovo2"]
+[ext_resource type="Texture2D" uid="uid://c3lr513ku60yl" path="res://scenes/game_object/player/player.png" id="2_gmlin"]
+[ext_resource type="PackedScene" uid="uid://6q8u431tvhrf" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_lvxji"]
+[ext_resource type="PackedScene" uid="uid://iosygrijbpv3" path="res://scenes/component/health_component.tscn" id="2_ss5pk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tj6oj"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gfnbi"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_frq24"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1104714872]
+collision_layer = 0
+motion_mode = 1
+script = ExtResource("1_dovo2")
+
+[node name="HealthComponent" parent="." unique_id=1615724963 instance=ExtResource("2_ss5pk")]
+max_health = 12.0
+
+[node name="AbilityManager" type="Node" parent="." unique_id=1982327729]
+
+[node name="SwordAbilityController" parent="AbilityManager" unique_id=481446254 instance=ExtResource("2_lvxji")]
+
+[node name="DamageIntervalTimer" type="Timer" parent="." unique_id=1758211158]
+wait_time = 0.5
+one_shot = true
+
+[node name="HitboxArea" type="Area2D" parent="." unique_id=1461084297]
+position = Vector2(0, -7)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea" unique_id=1249703674]
+position = Vector2(0, 0.4)
+shape = SubResource("CircleShape2D_tj6oj")
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=132270629]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=612977174]
+position = Vector2(0, -6.8)
+shape = SubResource("CircleShape2D_gfnbi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1031189690]
+texture = ExtResource("2_gmlin")
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=389202947]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_frq24")
