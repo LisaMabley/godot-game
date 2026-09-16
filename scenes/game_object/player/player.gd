@@ -4,6 +4,8 @@ const MAX_SPEED = 75
 const ACCELERATION_SMOOTHING = 25
 
 @onready var damage_interval_timer = $DamageIntervalTimer
+@onready var health_component = $HealthComponent
+@onready var health_bar = $HealthBar
 
 var number_of_attackers = 0
 
@@ -12,6 +14,8 @@ func _ready() -> void:
 	$HitboxArea.body_entered.connect(_on_hitbox_area_body_entered)
 	$HitboxArea.body_exited.connect(_on_hitbox_area_body_exited)
 	damage_interval_timer.timeout.connect(_on_damage_interval_timer_timeout)
+	health_component.health_changed.connect(_on_health_changed)
+	_update_health_display()
 
 
 func _process(delta: float) -> void:
@@ -32,9 +36,12 @@ func _get_movement_vector():
 func _check_deal_damage():
 	if number_of_attackers == 0 || !damage_interval_timer.is_stopped():
 		return
-	$HealthComponent._damage(1)
-	print($HealthComponent.current_health)
+	health_component._damage(1)
 	damage_interval_timer.start()
+
+
+func _update_health_display():
+	health_bar.value = health_component._get_health_percent()
 
 
 func _on_hitbox_area_body_entered(other_body: Node2D):
@@ -48,3 +55,7 @@ func _on_hitbox_area_body_exited(other_body: Node2D):
 
 func _on_damage_interval_timer_timeout():
 	_check_deal_damage()
+
+
+func _on_health_changed():
+	_update_health_display()
