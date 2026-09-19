@@ -6,6 +6,11 @@ func _ready():
 	$%QuitButton.pressed.connect(_on_quit_pressed)
 
 
+func _set_defeat():
+	$%TitleLabel.text = "Defeat"
+	$%DescriptionLabel.text = "You lost."
+
+
 func _on_restart_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file('res://scenes/main/main.tscn')
