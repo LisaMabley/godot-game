@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1i82p7a2icsk"
-path="res://.godot/imported/tile_0112.png-c7760cf33f33d722b14c06eb06f86bdb.ctex"
+uid="uid://b7qe405wmsihp"
+path="res://.godot/imported/vial_green.png-4091d83af37fe4e3fefdf6933adaa6f8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tile_0112.png"
-dest_files=["res://.godot/imported/tile_0112.png-c7760cf33f33d722b14c06eb06f86bdb.ctex"]
+source_file="res://assets/vial_green.png"
+dest_files=["res://.godot/imported/vial_green.png-4091d83af37fe4e3fefdf6933adaa6f8.ctex"]
 
 [params]
 

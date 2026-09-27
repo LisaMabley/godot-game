@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3lr513ku60yl" path="res://scenes/game_object/player/player.png" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://6q8u431tvhrf" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_lvxji"]
 [ext_resource type="PackedScene" uid="uid://iosygrijbpv3" path="res://scenes/component/health_component.tscn" id="2_ss5pk"]
+[ext_resource type="PackedScene" uid="uid://c0dif3cegx0q" path="res://scenes/ability/axe_ability_controller/axe_ability_controller.tscn" id="4_tj6oj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pknkg"]
 bg_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
@@ -36,6 +37,8 @@ max_health = 12.0
 [node name="AbilityManager" type="Node" parent="." unique_id=1982327729]
 
 [node name="SwordAbilityController" parent="AbilityManager" unique_id=481446254 instance=ExtResource("2_lvxji")]
+
+[node name="AxeAbilityController" parent="AbilityManager" unique_id=703851249 instance=ExtResource("4_tj6oj")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="." unique_id=1758211158]
 wait_time = 0.5
@@ -75,6 +78,6 @@ shape = SubResource("CircleShape2D_gfnbi")
 texture = ExtResource("2_gmlin")
 offset = Vector2(0, -8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=389202947]
+[node name="LandscapeCollisionArea" type="CollisionShape2D" parent="." unique_id=389202947]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_frq24")

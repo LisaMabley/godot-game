@@ -2,12 +2,12 @@ extends Node
 
 const MAX_RANGE = 50
 
-@export var sword_ability: PackedScene
+@export var sword_ability_scene: PackedScene
 
 var base_wait_time = 1.5
 var damage = 5
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	$Timer.timeout.connect(_on_timer_timeout)
 	$Timer.wait_time = base_wait_time
@@ -34,7 +34,7 @@ func _on_timer_timeout():
 	)
 
 	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
-	var sword_instance = sword_ability.instantiate() as SwordAbility
+	var sword_instance = sword_ability_scene.instantiate() as SwordAbility
 	foreground_layer.add_child(sword_instance)
 	sword_instance.hurtbox_component.damage = damage
 	

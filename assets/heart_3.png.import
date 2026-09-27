@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnxk06aa5klal"
-path="res://.godot/imported/basic_enemy.png-ae6d2d95d69f96d6decd6443b9362f0c.ctex"
+uid="uid://4c4epfn7xto"
+path="res://.godot/imported/heart_3.png-60689e41ff0d916e8c5a13f90d48d7fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/basic_enemy/basic_enemy.png"
-dest_files=["res://.godot/imported/basic_enemy.png-ae6d2d95d69f96d6decd6443b9362f0c.ctex"]
+source_file="res://assets/heart_3.png"
+dest_files=["res://.godot/imported/heart_3.png-60689e41ff0d916e8c5a13f90d48d7fd.ctex"]
 
 [params]
 
