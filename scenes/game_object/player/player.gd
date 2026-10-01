@@ -7,8 +7,11 @@ const ACCELERATION_SMOOTHING = 25
 @onready var health_component = $HealthComponent
 @onready var health_bar = $HealthBar
 @onready var abilities = $Abilities
+@onready var animation_player = $AnimationPlayer
+@onready var visuals = $Visuals
 
 var number_of_attackers = 0
+
 
 func _ready() -> void:
 	add_to_group("player")
@@ -25,7 +28,20 @@ func _process(delta: float) -> void:
 	var direction = movement_vector.normalized()
 	var target_velocity = direction * MAX_SPEED
 	velocity = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
+	
 	move_and_slide()
+	
+	if movement_vector.x != 0.0 || movement_vector.y != 0.0:
+		animation_player.play("walk")
+	else:
+		animation_player.play("RESET")
+	
+	var move_sign = sign(movement_vector.x)
+	
+	if move_sign == 0:
+		visuals.scale = Vector2.ONE 
+	else:
+		visuals.scale = Vector2(move_sign, 1)
 
 
 func _get_movement_vector():
