@@ -3,6 +3,7 @@ extends CharacterBody2D
 const MAX_SPEED = 25
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var visuals = $Visuals
 
 
 func _ready() -> void:
@@ -13,6 +14,10 @@ func _process(_delta: float) -> void:
 	var direction = _get_direction_to_player()
 	velocity = direction * MAX_SPEED
 	move_and_slide()
+	
+	var move_sign = sign(velocity.x)
+	if move_sign != 0:
+		visuals.scale = Vector2(move_sign, 1)
 
 
 func _get_direction_to_player():
