@@ -106,7 +106,7 @@ border_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfnbi"]
-radius = 13.0
+radius = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_frq24"]
 radius = 5.0
@@ -154,11 +154,11 @@ position = Vector2(0, 0.4)
 shape = SubResource("CircleShape2D_tj6oj")
 
 [node name="PickupArea" type="Area2D" parent="." unique_id=132270629]
-visible = false
 collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=612977174]
+visible = false
 position = Vector2(0, -6.8)
 shape = SubResource("CircleShape2D_gfnbi")
 

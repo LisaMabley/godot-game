@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://c6ubec7d5uiv0"]
 
-[ext_resource type="Script" uid="uid://bwiaof722sony" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_13du8"]
-[ext_resource type="Texture2D" uid="uid://bnxk06aa5klal" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_344qh"]
+[ext_resource type="Script" uid="uid://bwiaof722sony" path="res://scenes/game_object/rat_enemy/rat_enemy.gd" id="1_13du8"]
+[ext_resource type="Texture2D" uid="uid://bnxk06aa5klal" path="res://scenes/game_object/rat_enemy/rat_enemy.png" id="1_344qh"]
 [ext_resource type="PackedScene" uid="uid://iosygrijbpv3" path="res://scenes/component/health_component.tscn" id="2_isd1k"]
 [ext_resource type="PackedScene" uid="uid://dls7skv1j4ehs" path="res://scenes/component/gem_drop_component.tscn" id="3_pcrk2"]
+[ext_resource type="PackedScene" uid="uid://dfa4prxjcorws" path="res://scenes/component/velocity_component.tscn" id="4_1hd8u"]
 [ext_resource type="PackedScene" uid="uid://db75kkv2hj6k" path="res://scenes/component/death_component.tscn" id="4_bq7hi"]
 [ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hitbox_component.tscn" id="4_elloc"]
 
@@ -70,11 +71,12 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bq7hi"]
+radius = 6.6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_frq24"]
 radius = 5.0
 
-[node name="BasicEnemy" type="CharacterBody2D" unique_id=1102518436]
+[node name="RatEnemy" type="CharacterBody2D" unique_id=1102518436]
 collision_layer = 8
 collision_mask = 9
 motion_mode = 1
@@ -85,9 +87,13 @@ libraries/ = SubResource("AnimationLibrary_jkye5")
 autoplay = &"walk"
 
 [node name="HealthComponent" parent="." unique_id=1615724963 instance=ExtResource("2_isd1k")]
+max_health = 12.0
 
 [node name="GemDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("3_pcrk2")]
+drop_percent = 0.6
 health_component = NodePath("../HealthComponent")
+
+[node name="VelocityComponent" parent="." unique_id=528096772 instance=ExtResource("4_1hd8u")]
 
 [node name="DeathComponent" parent="." unique_id=1444640122 node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_bq7hi")]
 health_component = NodePath("../HealthComponent")
@@ -97,7 +103,7 @@ sprite = NodePath("../Visuals/Sprite2D")
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1280737162]
-position = Vector2(0, -3.5)
+position = Vector2(0, -3.3)
 shape = SubResource("CircleShape2D_bq7hi")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1005745252]
@@ -108,5 +114,6 @@ texture = ExtResource("1_344qh")
 offset = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=885693774]
+visible = false
 position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_frq24")

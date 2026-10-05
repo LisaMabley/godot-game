@@ -5,7 +5,6 @@ extends Node2D
 
 
 func _ready() -> void:
-	$GPUParticles2D.texture = sprite.texture
 	health_component.died.connect(_on_died)
 
 
@@ -20,6 +19,4 @@ func _on_died():
 	get_parent().remove_child(self)
 	entities_layer.add_child(self)
 	
-	global_position = spawn_position
-	$AnimationPlayer.play("default")
-	
+	global_position = spawn_position	
