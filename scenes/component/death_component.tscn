@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://db75kkv2hj6k"]
 
 [ext_resource type="Script" uid="uid://b74a1hoady3vx" path="res://scenes/component/death_component.gd" id="1_iwr6c"]
-[ext_resource type="Texture2D" uid="uid://bnxk06aa5klal" path="res://scenes/game_object/rat_enemy/rat_enemy.png" id="1_lgj88"]
+[ext_resource type="Texture2D" uid="uid://bnxk06aa5klal" path="res://scenes/game_object/enemies/rat_enemy/rat_enemy.png" id="1_lgj88"]
 
 [sub_resource type="Animation" id="Animation_iwr6c"]
 length = 0.001
