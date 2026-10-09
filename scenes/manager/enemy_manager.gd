@@ -61,4 +61,4 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	if arena_difficulty == 4:
 		enemy_table.add_item(rat_enemy_scene, 5, "rat")
 	if arena_difficulty == 6:
-		enemy_table.update_item_weight("rat", 500)
+		enemy_table.update_item_weight("rat", 20)
