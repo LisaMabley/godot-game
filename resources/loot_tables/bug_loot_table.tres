@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LootDropTable" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://resources/loot_drop_table.gd" id="1_table"]
+[ext_resource type="Script" path="res://resources/loot_drop_entry.gd" id="2_entry"]
+[ext_resource type="PackedScene" path="res://scenes/game_object/experience_gem/experience_gem.tscn" id="3_gem"]
+
+[sub_resource type="Resource" id="LootDropEntry_gem"]
+script = ExtResource("2_entry")
+drop_scene = ExtResource("3_gem")
+weight = 1
+
+[resource]
+script = ExtResource("1_table")
+entries = Array[ExtResource("2_entry")]([SubResource("LootDropEntry_gem")])

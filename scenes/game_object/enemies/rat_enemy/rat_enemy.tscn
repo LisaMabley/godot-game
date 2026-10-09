@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dfa4prxjcorws" path="res://scenes/component/velocity_component.tscn" id="4_1hd8u"]
 [ext_resource type="PackedScene" uid="uid://db75kkv2hj6k" path="res://scenes/component/death_component.tscn" id="4_bq7hi"]
 [ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hitbox_component.tscn" id="4_elloc"]
+[ext_resource type="Resource" path="res://resources/loot_tables/rat_loot_table.tres" id="5_loot_table"]
 
 [sub_resource type="Animation" id="Animation_elloc"]
 length = 0.001
@@ -93,6 +94,7 @@ max_health = 10.0
 [node name="LootDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("3_pcrk2")]
 drop_percent = 0.6
 health_component = NodePath("../HealthComponent")
+loot_table = ExtResource("5_loot_table")
 
 [node name="VelocityComponent" parent="." unique_id=528096772 instance=ExtResource("4_1hd8u")]
 max_speed = 20
