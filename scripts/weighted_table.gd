@@ -12,7 +12,9 @@ func add_item(item, weight: int, id: String):
 func update_item_weight(id_to_update, new_weight: int):
 	for item in items:
 		if item.id == id_to_update:
+			var old_weight = item["weight"]
 			item["weight"] = new_weight
+			weight_sum += (new_weight - old_weight)
 
 
 func pick_item():
@@ -21,4 +23,5 @@ func pick_item():
 	for item in items:
 		iteration_sum += item["weight"]
 		if chosen_weight <= iteration_sum:
+			#print(item.id)
 			return item["item"]

@@ -59,6 +59,6 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	time_off = min(time_off, .7)
 	timer.wait_time = base_spawn_time - time_off
 	if arena_difficulty == 4:
-		enemy_table.add_item(rat_enemy_scene, 4, "rat")
+		enemy_table.add_item(rat_enemy_scene, 5, "rat")
 	if arena_difficulty == 6:
-		enemy_table.update_item_weight("rat", 20)
+		enemy_table.update_item_weight("rat", 500)
