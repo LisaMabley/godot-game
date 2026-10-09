@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ct31t4s37onqm" path="res://scenes/game_object/enemies/bug_enemy/bug_enemy.gd" id="1_o3d3p"]
 [ext_resource type="PackedScene" uid="uid://iosygrijbpv3" path="res://scenes/component/health_component.tscn" id="2_tkb66"]
 [ext_resource type="PackedScene" uid="uid://dfa4prxjcorws" path="res://scenes/component/velocity_component.tscn" id="3_1me1v"]
-[ext_resource type="PackedScene" uid="uid://dls7skv1j4ehs" path="res://scenes/component/gem_drop_component.tscn" id="4_1me1v"]
+[ext_resource type="PackedScene" uid="uid://dls7skv1j4ehs" path="res://scenes/component/loot_drop_component.tscn" id="4_1me1v"]
 [ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hitbox_component.tscn" id="4_1w8vr"]
 [ext_resource type="Texture2D" uid="uid://m21p8v22ng36" path="res://scenes/game_object/enemies/bug_enemy/bug_2.png" id="8_j8xus"]
 [ext_resource type="Texture2D" uid="uid://dbqj3vxcei0nv" path="res://scenes/game_object/enemies/bug_enemy/bug_3.png" id="9_flp3v"]
@@ -42,7 +42,7 @@ script = ExtResource("1_o3d3p")
 [node name="VelocityComponent" parent="." unique_id=528096772 instance=ExtResource("3_1me1v")]
 max_speed = 16
 
-[node name="GemDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("4_1me1v")]
+[node name="LootDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("4_1me1v")]
 drop_percent = 0.4
 health_component = NodePath("../HealthComponent")
 

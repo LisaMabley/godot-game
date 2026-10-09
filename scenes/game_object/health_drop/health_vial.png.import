@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnmxfyumom046"
-path="res://.godot/imported/vial_red.png-305990cfdcf763a56e56df11a8338ce9.ctex"
+path="res://.godot/imported/health_vial.png-0890e58401896b5ec118d202c741ed55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/vial_red.png"
-dest_files=["res://.godot/imported/vial_red.png-305990cfdcf763a56e56df11a8338ce9.ctex"]
+source_file="res://scenes/game_object/health_drop/health_vial.png"
+dest_files=["res://.godot/imported/health_vial.png-0890e58401896b5ec118d202c741ed55.ctex"]
 
 [params]
 
