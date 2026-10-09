@@ -8,4 +8,8 @@ func _ready() -> void:
 
 
 func _on_collected() -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	if player != null:
+		var health_component = player.get_node("HealthComponent") as HealthComponent
+		health_component._heal(health_component.max_health * 0.1)
 	queue_free()
