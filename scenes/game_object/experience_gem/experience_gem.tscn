@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://qrnvenxnpxl8" path="res://scenes/game_object/experience_gem/experience_gem.png" id="1_gfnbi"]
 [ext_resource type="Script" uid="uid://d2iv516oebgk1" path="res://scenes/game_object/experience_gem/experience_gem.gd" id="1_hdj36"]
-[ext_resource type="Script" path="res://scenes/component/pickup_animation_component.gd" id="2_pickup"]
+[ext_resource type="Script" uid="uid://0whtkxtduvwf" path="res://scenes/component/pickup_animation_component.gd" id="2_pickup"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gfnbi"]
 radius = 9.0
@@ -21,5 +21,5 @@ shape = SubResource("CircleShape2D_gfnbi")
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("1_gfnbi")
 
-[node name="PickupAnimationComponent" type="Node" parent="."]
+[node name="PickupAnimationComponent" type="Node" parent="." unique_id=1944534718]
 script = ExtResource("2_pickup")
