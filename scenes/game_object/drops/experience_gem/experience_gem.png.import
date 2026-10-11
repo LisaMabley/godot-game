@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnmxfyumom046"
-path="res://.godot/imported/health_vial.png-0890e58401896b5ec118d202c741ed55.ctex"
+uid="uid://qrnvenxnpxl8"
+path="res://.godot/imported/experience_gem.png-997496ecbce21887039bd765e0be1ddc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/health_drop/health_vial.png"
-dest_files=["res://.godot/imported/health_vial.png-0890e58401896b5ec118d202c741ed55.ctex"]
+source_file="res://scenes/game_object/drops/experience_gem/experience_gem.png"
+dest_files=["res://.godot/imported/experience_gem.png-997496ecbce21887039bd765e0be1ddc.ctex"]
 
 [params]
 
