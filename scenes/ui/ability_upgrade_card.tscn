@@ -3,20 +3,43 @@
 [ext_resource type="Script" uid="uid://bwnx2xjei0wws" path="res://scenes/ui/ability_upgrade_card.gd" id="1_8ur3e"]
 
 [node name="AbilityUpgradeCard" type="PanelContainer" unique_id=350090479]
-custom_minimum_size = Vector2(120, 150)
+custom_minimum_size = Vector2(150, 150)
+offset_right = 144.0
+offset_bottom = 150.0
 script = ExtResource("1_8ur3e")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1842813272]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1451669127]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="NameLabel" type="Label" parent="VBoxContainer" unique_id=2109551063]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1842813272]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1084796567]
+layout_mode = 2
+mouse_filter = 1
+theme_type_variation = &"AlternatePanelContainer"
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=2109551063]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
 text = "Upgrade Name"
+vertical_alignment = 2
+autowrap_mode = 2
 
-[node name="DescriptionLabel" type="Label" parent="VBoxContainer" unique_id=1317356453]
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1317356453]
 unique_name_in_owner = true
 custom_maximum_size = Vector2(120, 120)
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
+theme_override_constants/outline_size = 8
 text = "Show some long description here."
 autowrap_mode = 2
