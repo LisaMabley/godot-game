@@ -9,6 +9,7 @@ The player auto-attacks with abilities, collects experience gems from killed ene
   - `godot --headless --path . --import` loads every scene/script and reports parse errors and broken references. Run it after renames, moves, or `.tscn` edits.
   - Gameplay still needs a human. Ask the user to playtest feel and balance changes.
 - Prefer editing `.gd` scripts. `.tscn` / `.tres` files are editor-managed: small, targeted text edits (an exported property, a node path) are fine, but don't hand-author new scenes. Describe the node setup for the user to build in the editor instead. Never invent `uid://` values.
+- `README.md` is the human-facing overview. When a change adds or alters a feature, control, or top-level folder, update its Features/Controls/structure sections too.
 - Commit messages use a conventional prefix: `feat:`, `fix:`, `bug:`. Lowercase, short.
 - Display: 640x360 viewport, stretched to 1920x1080, pixel art (nearest texture filter).
 
