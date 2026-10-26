@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bsekm2yhcfnbx" path="res://scenes/ability/axe_ability/axe.png" id="1_4o2mv"]
 [ext_resource type="Script" uid="uid://dxg5gexlsb76p" path="res://scenes/ability/axe_ability/axe_ability.gd" id="1_65u81"]
-[ext_resource type="PackedScene" uid="uid://qwl7k8jh7ri4" path="res://scenes/component/hurtbox_component.tscn" id="3_m8265"]
+[ext_resource type="PackedScene" uid="uid://qwl7k8jh7ri4" path="res://scenes/component/hitbox_component.tscn" id="3_m8265"]
 
 [sub_resource type="Animation" id="Animation_r58rl"]
 length = 0.001
@@ -55,7 +55,7 @@ autoplay = &"default"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=447860790]
 texture = ExtResource("1_4o2mv")
 
-[node name="HurtboxComponent" parent="." unique_id=720862482 instance=ExtResource("3_m8265")]
+[node name="HitboxComponent" parent="." unique_id=720862482 instance=ExtResource("3_m8265")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=570039845]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=570039845]
 shape = SubResource("CircleShape2D_r58rl")

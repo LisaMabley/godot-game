@@ -22,7 +22,7 @@ func _on_timer_timeout():
 	
 	var axe_instance = axe_ability_scene.instantiate() as AxeAbility
 	foreground_layer.add_child(axe_instance)
-	axe_instance.hurtbox_component.damage = base_damage * additional_damage_percent
+	axe_instance.hitbox_component.damage = base_damage * additional_damage_percent
 	
 	axe_instance.global_position = player.global_position
 

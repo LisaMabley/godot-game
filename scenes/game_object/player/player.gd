@@ -15,8 +15,8 @@ var number_of_attackers = 0
 
 func _ready() -> void:
 	add_to_group("player")
-	$HitboxArea.body_entered.connect(_on_hitbox_area_body_entered)
-	$HitboxArea.body_exited.connect(_on_hitbox_area_body_exited)
+	$HurtboxArea.body_entered.connect(_on_hurtbox_area_body_entered)
+	$HurtboxArea.body_exited.connect(_on_hurtbox_area_body_exited)
 	damage_interval_timer.timeout.connect(_on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(_on_health_changed)
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
@@ -60,12 +60,12 @@ func _update_health_display():
 	health_bar.value = health_component._get_health_percent()
 
 
-func _on_hitbox_area_body_entered(other_body: Node2D):
+func _on_hurtbox_area_body_entered(other_body: Node2D):
 	number_of_attackers +=1
 	_check_deal_damage()
 
 
-func _on_hitbox_area_body_exited(other_body: Node2D):
+func _on_hurtbox_area_body_exited(other_body: Node2D):
 	number_of_attackers -=1
 
 

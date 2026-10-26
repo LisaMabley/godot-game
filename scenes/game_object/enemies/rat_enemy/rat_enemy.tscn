@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dls7skv1j4ehs" path="res://scenes/component/loot_drop_component.tscn" id="3_pcrk2"]
 [ext_resource type="PackedScene" uid="uid://dfa4prxjcorws" path="res://scenes/component/velocity_component.tscn" id="4_1hd8u"]
 [ext_resource type="PackedScene" uid="uid://db75kkv2hj6k" path="res://scenes/component/death_component.tscn" id="4_bq7hi"]
-[ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hitbox_component.tscn" id="4_elloc"]
+[ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hurtbox_component.tscn" id="4_elloc"]
 [ext_resource type="Resource" uid="uid://b7anwn01hid32" path="res://resources/loot_tables/rat_loot_table.tres" id="5_loot_table"]
 [ext_resource type="PackedScene" uid="uid://cs0agig0qlot3" path="res://scenes/component/hitflash_component.tscn" id="8_5py58"]
 
@@ -107,10 +107,10 @@ sprite = NodePath("../Visuals/Sprite2D")
 health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 
-[node name="HitboxComponent" parent="." unique_id=1789079162 node_paths=PackedStringArray("health_component") instance=ExtResource("4_elloc")]
+[node name="HurtboxComponent" parent="." unique_id=1789079162 node_paths=PackedStringArray("health_component") instance=ExtResource("4_elloc")]
 health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1280737162]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1280737162]
 position = Vector2(0, -3.3)
 shape = SubResource("CircleShape2D_bq7hi")
 

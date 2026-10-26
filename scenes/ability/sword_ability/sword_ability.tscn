@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4qchdi6tgv6b" path="res://scenes/ability/sword_ability/sword_ability.gd" id="1_t8g1f"]
 [ext_resource type="Texture2D" uid="uid://bnrap2ljvgwh6" path="res://scenes/ability/sword_ability/sword.png" id="1_upg5g"]
-[ext_resource type="PackedScene" uid="uid://qwl7k8jh7ri4" path="res://scenes/component/hurtbox_component.tscn" id="2_abpad"]
+[ext_resource type="PackedScene" uid="uid://qwl7k8jh7ri4" path="res://scenes/component/hitbox_component.tscn" id="2_abpad"]
 
 [sub_resource type="Animation" id="Animation_upg5g"]
 length = 0.75
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("HurtboxComponent/CollisionShape2D:disabled")
+tracks/2/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -89,7 +89,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("HurtboxComponent/CollisionShape2D:disabled")
+tracks/3/path = NodePath("HitboxComponent/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -119,9 +119,9 @@ autoplay = &"swing"
 texture = ExtResource("1_upg5g")
 offset = Vector2(0, -4)
 
-[node name="HurtboxComponent" parent="." unique_id=720862482 instance=ExtResource("2_abpad")]
+[node name="HitboxComponent" parent="." unique_id=720862482 instance=ExtResource("2_abpad")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=1165231974]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1165231974]
 position = Vector2(11, 3)
 shape = SubResource("RectangleShape2D_abpad")
 disabled = true

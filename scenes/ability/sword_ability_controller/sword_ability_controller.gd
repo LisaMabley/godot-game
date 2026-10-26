@@ -37,7 +37,7 @@ func _on_timer_timeout():
 	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
 	var sword_instance = sword_ability_scene.instantiate() as SwordAbility
 	foreground_layer.add_child(sword_instance)
-	sword_instance.hurtbox_component.damage = base_damage * additional_damage_percent
+	sword_instance.hitbox_component.damage = base_damage * additional_damage_percent
 	
 	sword_instance.global_position = enemies[0].global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
