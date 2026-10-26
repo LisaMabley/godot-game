@@ -54,4 +54,4 @@ func _on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictio
 		$Timer.start()
 	
 	elif upgrade.id == "sword_damage":
-		additional_damage_percent = 1 + (current_upgrades["sword_damage"]["quantity"] * .1)
+		additional_damage_percent = 1 + (current_upgrades["sword_damage"]["quantity"] * .15)
