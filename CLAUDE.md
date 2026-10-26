@@ -51,6 +51,6 @@ The player auto-attacks with abilities, collects experience gems from killed ene
 
 - Tabs for indentation. Two blank lines between functions.
 - `snake_case` names; `class_name` in PascalCase for types referenced elsewhere.
-- **Function naming:** functions used only inside their own script get a leading underscore (`_get_spawn_position`); functions called from other scripts or scenes have none (`damage`, `set_ability_upgrades`). Signal handlers are internal: `_on_<source>_<signal>`. Some older code doesn't follow this yet. Fix it when touching that code, and update every caller.
+- **Function naming:** functions used only inside their own script get a leading underscore (`_get_spawn_position`); functions called from other scripts or scenes have none (`damage`, `set_ability_upgrades`). Signal handlers are internal: `_on_<source>_<signal>`. A method one instance calls on another instance of the same class counts as shared (e.g. `AbilityUpgradeCard.play_discard`). When a function's usage changes, rename it and update every caller.
 - `@onready var x = $Node` for child references; `@export` for cross-scene references.
 - Frame-rate-independent smoothing uses `lerp(..., 1 - exp(-k * delta))`.

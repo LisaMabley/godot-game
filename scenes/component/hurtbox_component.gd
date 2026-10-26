@@ -19,7 +19,7 @@ func _on_area_entered(other_area: Area2D):
 
 	var hitbox_component = other_area as HitboxComponent
 	var enemy_damage_dealt = hitbox_component.damage
-	health_component._damage(enemy_damage_dealt)
+	health_component.damage(enemy_damage_dealt)
 	
 	var floating_text = floating_text_scene.instantiate() as Node2D
 	get_tree().get_first_node_in_group("foreground_layer").add_child(floating_text)

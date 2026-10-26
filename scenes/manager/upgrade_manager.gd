@@ -34,12 +34,12 @@ func _apply_upgrade(upgrade: AbilityUpgrade):
 		if current_quantity == upgrade.max_quantity:
 			upgrade_pool.remove_item(upgrade)
 	
-	update_upgrade_pool(upgrade)
+	_update_upgrade_pool(upgrade)
 	
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 
 
-func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
+func _update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 	if chosen_upgrade.id == upgrade_axe.id:
 		upgrade_pool.add_item(upgrade_axe_damage, 10, upgrade_axe_damage.id)
 

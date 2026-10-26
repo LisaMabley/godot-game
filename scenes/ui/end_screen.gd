@@ -6,7 +6,7 @@ func _ready():
 	$%QuitButton.pressed.connect(_on_quit_pressed)
 
 
-func _set_defeat():
+func set_defeat():
 	$%TitleLabel.text = "Defeat"
 	$%DescriptionLabel.text = "You lost."
 

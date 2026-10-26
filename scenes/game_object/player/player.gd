@@ -52,12 +52,12 @@ func _get_movement_vector():
 func _check_deal_damage():
 	if number_of_attackers == 0 || !damage_interval_timer.is_stopped():
 		return
-	health_component._damage(1)
+	health_component.damage(1)
 	damage_interval_timer.start()
 
 
 func _update_health_display():
-	health_bar.value = health_component._get_health_percent()
+	health_bar.value = health_component.get_health_percent()
 
 
 func _on_hurtbox_area_body_entered(other_body: Node2D):

@@ -27,13 +27,13 @@ func _select_card():
 		if other_card == self:
 			continue
 		
-		other_card._play_discard()
+		other_card.play_discard()
 	
 	await $AnimationPlayer.animation_finished
 	selected.emit()
 
 
-func _play_discard():
+func play_discard():
 	$AnimationPlayer.play("discard")
 
 
