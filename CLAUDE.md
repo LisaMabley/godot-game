@@ -45,7 +45,18 @@ The player auto-attacks with abilities, collects experience gems from killed ene
 
 - **New upgrade:** create a `.tres` in `resources/upgrades/` (unique `id`), preload it in `upgrade_manager.gd`, add it to the pool (in `_ready`, or in `update_upgrade_pool` if it depends on an ability), and handle its `id` in the relevant controller's `_on_ability_upgrade_added`. The `description` text is hand-written, so keep any numbers in it (e.g. "+15%") in sync with the controller's math.
 - **New ability:** controller scene + ability scene under `scenes/ability/`, an `Ability` `.tres` pointing to the controller scene, then register it as an upgrade (above).
-- **New enemy:** scene under `scenes/game_object/enemies/` with the standard components, a loot table `.tres` in `resources/loot_tables/`, and an `@export` + table entry in `enemy_manager.gd`.
+- **New enemy:** scene under `scenes/game_object/enemies/` with the standard components, a loot table `.tres` in `resources/loot_tables/`, and an `@export` + table entry in `enemy_manager.gd`. See "Known inconsistencies" below: hit flash and death animation only work for `Sprite2D` enemies so far.
+
+## Known inconsistencies
+
+Two styles of enemy visuals coexist. The direction is **`AnimatedSprite2D` for enemies going forward**; the rat is the legacy pattern.
+
+- **Rat (`rat_enemy`), tutorial style:** a static `Sprite2D` animated by an `AnimationPlayer` (`walk`: position/rotation tweaks). Has `HitflashComponent` (white flash on damage) and `DeathComponent` (sprite spins up, shrinks and fades).
+- **Bug (`bug_enemy`), animated style:** an `AnimatedSprite2D` with Kenney frames (`bug_1..3.png`). Hit flash and death animation do **not** work: `HitflashComponent.sprite` and `DeathComponent.sprite` are typed `Sprite2D`, so neither component is on the bug. A dead-pose sprite (bug lying down) exists but isn't wired up yet.
+  - Outstanding: make damage flash and death work for `AnimatedSprite2D` (e.g. type the export as `CanvasItem`/`Node2D`, and have death use the dead-pose frame).
+- **`DeathComponent` particle texture is hardcoded** to `rat_enemy.png` in `death_component.tscn`, so it's rat-specific until it reads the texture from its `sprite`.
+- **Slug (`slug_enemy`), in progress:** an `AnimatedSprite2D` enemy started by duplicating the bug. Its movement visuals will differ: it should rotate to point at the player, rather than flipping `Visuals.scale.x` by movement direction like the rat and bug.
+- `rat_enemy.gd` and `bug_enemy.gd` are currently identical; the slug's script will diverge (rotation).
 
 ## Code style
 
