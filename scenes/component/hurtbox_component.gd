@@ -28,4 +28,4 @@ func _on_area_entered(other_area: Area2D):
 	if round(enemy_damage_dealt) == enemy_damage_dealt:
 		format_string = "%0.0f"
 	
-	floating_text.start(str(enemy_damage_dealt))
+	floating_text.start(format_string % enemy_damage_dealt)
