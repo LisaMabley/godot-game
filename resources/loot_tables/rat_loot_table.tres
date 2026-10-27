@@ -13,6 +13,7 @@ weight = 9
 [sub_resource type="Resource" id="LootDropEntry_health"]
 script = ExtResource("2_entry")
 drop_scene = ExtResource("4_health_drop")
+weight = 4
 
 [resource]
 script = ExtResource("1_table")

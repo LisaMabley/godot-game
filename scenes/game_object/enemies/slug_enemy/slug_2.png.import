@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cv3xtecwksyqq"
-path="res://.godot/imported/slug_4.png-8c12e637b7b981e45beea424fb6e42ed.ctex"
+uid="uid://sgndf10pfh2e"
+path="res://.godot/imported/slug_2.png-d4c0988ad94909ce62b1d4e14648df17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/potential_sprites/slug_4.png"
-dest_files=["res://.godot/imported/slug_4.png-8c12e637b7b981e45beea424fb6e42ed.ctex"]
+source_file="res://scenes/game_object/enemies/slug_enemy/slug_2.png"
+dest_files=["res://.godot/imported/slug_2.png-d4c0988ad94909ce62b1d4e14648df17.ctex"]
 
 [params]
 

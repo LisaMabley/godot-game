@@ -4,6 +4,7 @@ const SPAWN_RADIUS = 400
 
 @export var rat_enemy_scene: PackedScene
 @export var bug_enemy_scene: PackedScene
+@export var slug_enemy_scene: PackedScene
 @export var arena_time_manager: Node
 
 @onready var timer = $Timer
@@ -58,7 +59,11 @@ func _on_arena_difficulty_increased(arena_difficulty: int):
 	var time_off = (.1 / 12) * arena_difficulty
 	time_off = min(time_off, .7)
 	timer.wait_time = base_spawn_time - time_off
-	if arena_difficulty == 4:
-		enemy_table.add_item(rat_enemy_scene, 5, "rat")
+	if arena_difficulty == 3:
+		enemy_table.add_item(slug_enemy_scene, 2, "slug")
 	if arena_difficulty == 6:
-		enemy_table.update_item_weight("rat", 20)
+		enemy_table.update_item_weight("slug", 15)
+		enemy_table.add_item(rat_enemy_scene, 2, "rat")
+	if arena_difficulty == 9:
+		enemy_table.update_item_weight("bug", 5)
+		enemy_table.update_item_weight("rat", 15)

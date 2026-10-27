@@ -92,7 +92,7 @@ autoplay = &"walk"
 max_health = 10.0
 
 [node name="LootDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("3_pcrk2")]
-drop_percent = 0.6
+drop_percent = 0.9
 health_component = NodePath("../HealthComponent")
 loot_table = ExtResource("5_loot_table")
 
