@@ -6,13 +6,6 @@ class_name Balance
 # Per-enemy stats. "loot" is a list of [drop id, weight]; drop ids are keys of
 # DROP_SCENES. "drop_percent" is the chance (0-1) that anything drops at all.
 const ENEMIES = {
-	"rat": {
-		"max_health": 10,
-		"max_speed": 20,
-		"acceleration": 5,
-		"drop_percent": 0.9,
-		"loot": [["gem", 9], ["health", 4]],
-	},
 	"bug": {
 		"max_health": 5,
 		"max_speed": 16,
@@ -22,10 +15,17 @@ const ENEMIES = {
 	},
 	"slug": {
 		"max_health": 10,
-		"max_speed": 14,
-		"acceleration": 3,
+		"max_speed": 10,
+		"acceleration": 2,
 		"drop_percent": 0.7,
-		"loot": [["gem", 2], ["health", 1]],
+		"loot": [["gem", 9], ["health", 1]],
+	},
+		"rat": {
+		"max_health": 16,
+		"max_speed": 20,
+		"acceleration": 5,
+		"drop_percent": 0.95,
+		"loot": [["gem", 7], ["health", 3]],
 	},
 }
 
