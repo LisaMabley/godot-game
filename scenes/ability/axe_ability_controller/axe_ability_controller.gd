@@ -2,12 +2,14 @@ extends Node
 
 @export var axe_ability_scene: PackedScene
 
-var base_damage = 8
+var base_wait_time = Balance.WEAPONS["axe"]["cooldown"]
+var base_damage = Balance.WEAPONS["axe"]["damage"]
 var additional_damage_percent = 1
 
 
 func _ready() -> void:
 	$Timer.timeout.connect(_on_timer_timeout)
+	$Timer.start(base_wait_time)
 	GameEvents.ability_upgrade_added.connect(_on_ability_upgrade_added)
 
 
@@ -35,4 +37,4 @@ func _on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictio
 		#$Timer.start()
 	
 	if upgrade.id == "axe_damage":
-		additional_damage_percent = 1 + (current_upgrades["axe_damage"]["quantity"] * .15)
+		additional_damage_percent = 1 + (current_upgrades["axe_damage"]["quantity"] * Balance.UPGRADES["axe_damage"]["percent"] / 100.0)

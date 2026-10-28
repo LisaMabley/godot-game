@@ -9,14 +9,35 @@ const SPAWN_RADIUS = 400
 
 @onready var timer = $Timer
 
-var base_spawn_time = 0
 var enemy_table = WeightedTable.new()
+var enemy_scenes = {}
 
 func _ready() -> void:
-	enemy_table.add_item(bug_enemy_scene, 10, "bug")
-	base_spawn_time = timer.wait_time
+	enemy_scenes = {
+		"rat": rat_enemy_scene,
+		"bug": bug_enemy_scene,
+		"slug": slug_enemy_scene,
+	}
+	_apply_spawn_steps(0)
+	timer.start(Balance.SPAWN_BASE_TIME)
 	timer.timeout.connect(_on_timer_timeout)
 	arena_time_manager.arena_difficulty_increased.connect(_on_arena_difficulty_increased)
+
+
+func _apply_spawn_steps(arena_difficulty: int):
+	for step in Balance.SPAWN_STEPS:
+		var difficulty = step[0]
+		var enemy_id = step[1]
+		var weight = step[2]
+		if difficulty != arena_difficulty:
+			continue
+
+		if enemy_table.has_item_id(enemy_id):
+			enemy_table.update_item_weight(enemy_id, weight)
+		elif enemy_scenes.has(enemy_id):
+			enemy_table.add_item(enemy_scenes[enemy_id], weight, enemy_id)
+		else:
+			push_error("Balance.SPAWN_STEPS names unknown enemy '%s'." % enemy_id)
 
 
 func _get_spawn_position():
@@ -56,14 +77,7 @@ func _on_timer_timeout():
 
 
 func _on_arena_difficulty_increased(arena_difficulty: int):
-	var time_off = (.1 / 12) * arena_difficulty
-	time_off = min(time_off, .7)
-	timer.wait_time = base_spawn_time - time_off
-	if arena_difficulty == 3:
-		enemy_table.add_item(slug_enemy_scene, 2, "slug")
-	if arena_difficulty == 6:
-		enemy_table.update_item_weight("slug", 15)
-		enemy_table.add_item(rat_enemy_scene, 2, "rat")
-	if arena_difficulty == 9:
-		enemy_table.update_item_weight("bug", 5)
-		enemy_table.update_item_weight("rat", 15)
+	var time_off = Balance.SPAWN_TIME_REDUCTION_PER_LEVEL * arena_difficulty
+	time_off = min(time_off, Balance.SPAWN_MAX_TIME_REDUCTION)
+	timer.wait_time = Balance.SPAWN_BASE_TIME - time_off
+	_apply_spawn_steps(arena_difficulty)

@@ -22,8 +22,9 @@ The player auto-attacks with abilities, collects experience gems from killed ene
 - `scenes/ability/`: each ability has an `*_ability_controller` (timer-driven, spawns instances, listens for upgrades) and an `*_ability` (the spawned attack with a `HitboxComponent`).
 - `scenes/ui/`: HUD, upgrade screen/cards, end screen, floating damage text.
 - `scenes/autoload/game_events.gd`: `GameEvents` autoload, the global signal bus.
-- `resources/`: custom `Resource` classes and their `.tres` data (upgrades, loot tables).
+- `resources/upgrades/`: the `AbilityUpgrade` / `Ability` resource classes. Instances are built at runtime from `Balance.UPGRADES`; there are no `.tres` files.
 - `scripts/weighted_table.gd`: `WeightedTable`, used for enemy spawns, upgrade pool, and loot.
+- `scripts/balance.gd`: `Balance`, constants-only tuning file (see "Balance" below).
 - `assets/potential_sprites/`: unused assets parked for later.
 - `theme/theme.tres`: project-wide UI theme (custom font, panel styles).
 
@@ -37,15 +38,16 @@ The player auto-attacks with abilities, collects experience gems from killed ene
   - `VelocityComponent`, `DeathComponent`, `HitflashComponent`, `LootDropComponent`, `PickupAnimationComponent`.
 - **Global signal bus.** Cross-system events go through `GameEvents` (`emit_*` helper methods wrap each signal). Local wiring uses direct signal connections in `_ready()`.
 - **Groups for lookups.** `player`, `enemy`, `entities_layer`, `foreground_layer`, `upgrade_card`, accessed via `get_tree().get_first_node_in_group(...)`. Always null-check the player.
-- **Upgrades.** `AbilityUpgrade` resource (`id`, `max_quantity`, `name`, `description`); `Ability` extends it with `ability_controller_scene`. `UpgradeManager` keeps `current_upgrades[id] = {resource, quantity}` and a `WeightedTable` pool. When an upgrade hits `max_quantity`, it's removed from the pool. Unlocking an ability adds its follow-up upgrades in `update_upgrade_pool`. Ability controllers react to `GameEvents.ability_upgrade_added` by matching on `upgrade.id`.
-- **Difficulty.** `ArenaTimeManager` emits `arena_difficulty_increased` every 5s; `EnemyManager` shortens spawn time and adds/reweights enemies at difficulty thresholds.
+- **Upgrades.** `AbilityUpgrade` resource (`id`, `max_quantity`, `name`, `description`); `Ability` extends it with `ability_controller_scene`. `UpgradeManager` builds one instance per `Balance.UPGRADES` entry in `_ready` (an `Ability` if the entry has `ability_controller_scene`, loaded by path to avoid a preload cycle), keeps `current_upgrades[id] = {resource, quantity}` and a `WeightedTable` pool. When an upgrade hits `max_quantity`, it's removed from the pool. Entries with `unlocked_by` join the pool the first time that upgrade is picked (`_update_upgrade_pool`). Ability controllers react to `GameEvents.ability_upgrade_added` by matching on `upgrade.id`.
+- **Difficulty.** `ArenaTimeManager` emits `arena_difficulty_increased` every 5s; `EnemyManager` shortens spawn time and adds/reweights enemies per `Balance.SPAWN_STEPS`.
+- **Balance.** Tuning numbers live in `scripts/balance.gd`, not in scenes: `ENEMIES` (health, speed, acceleration, drop chance, loot by drop id), `DROP_SCENES`, spawn timing and `SPAWN_STEPS`, `WEAPONS` (damage, cooldown), and `UPGRADES` (name, description, max quantity, pool weight, per-level `percent`, `unlocked_by`, `ability_controller_scene`). Each enemy script has a `const ENEMY_ID` and calls `Balance.apply_enemy_stats(self, ENEMY_ID)` in `_ready()`, which overwrites its `HealthComponent`, `VelocityComponent` and `LootDropComponent`. Ability controllers read `Balance.WEAPONS` and start their `Timer` with the cooldown. Don't put these values back into `.tscn` overrides. Controllers read upgrade effects from `Balance.UPGRADES[id]["percent"]`, and `{percent}` in a description is filled from the same value, so card text and math can't drift. Never hardcode a number in a description. The player still uses scene values for health and speed.
 - **Physics layers:** 1 Terrain, 2 Player, 3 Enemy, 4 EnemyCollision, 5 PlayerPickup.
 
 ## Adding things (checklists)
 
-- **New upgrade:** create a `.tres` in `resources/upgrades/` (unique `id`), preload it in `upgrade_manager.gd`, add it to the pool (in `_ready`, or in `update_upgrade_pool` if it depends on an ability), and handle its `id` in the relevant controller's `_on_ability_upgrade_added`. The `description` text is hand-written, so keep any numbers in it (e.g. "+15%") in sync with the controller's math.
-- **New ability:** controller scene + ability scene under `scenes/ability/`, an `Ability` `.tres` pointing to the controller scene, then register it as an upgrade (above).
-- **New enemy:** scene under `scenes/game_object/enemies/` with the standard components, a loot table `.tres` in `resources/loot_tables/`, and an `@export` + table entry in `enemy_manager.gd`. See "Known inconsistencies" below: hit flash and death animation only work for `Sprite2D` enemies so far.
+- **New upgrade:** add an entry to `Balance.UPGRADES` (unique id; `unlocked_by` if it depends on an ability; use `{percent}` in the description), and handle its id in the relevant controller's `_on_ability_upgrade_added`, reading `percent` from `Balance.UPGRADES`.
+- **New ability:** controller scene + ability scene under `scenes/ability/`, a `Balance.WEAPONS` entry for its damage/cooldown, and a `Balance.UPGRADES` entry with `ability_controller_scene` set to the controller's path (see "New upgrade").
+- **New enemy:** scene under `scenes/game_object/enemies/` with the standard components (node names `HealthComponent`, `VelocityComponent`, `LootDropComponent`), a `const ENEMY_ID` + `Balance.apply_enemy_stats` call in its script, an entry in `Balance.ENEMIES` and `Balance.SPAWN_STEPS`, and an `@export` + `enemy_scenes` entry in `enemy_manager.gd`. See "Known inconsistencies" below: hit flash and death animation only work for `Sprite2D` enemies so far.
 
 ## Known inconsistencies
 

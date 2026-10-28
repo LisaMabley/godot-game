@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+const ENEMY_ID = "bug"
+
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 
 
 func _ready() -> void:
 	add_to_group("enemy")
+	Balance.apply_enemy_stats(self, ENEMY_ID)
 
 
 func _process(_delta: float) -> void:

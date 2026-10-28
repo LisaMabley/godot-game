@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dfa4prxjcorws" path="res://scenes/component/velocity_component.tscn" id="4_1hd8u"]
 [ext_resource type="PackedScene" uid="uid://db75kkv2hj6k" path="res://scenes/component/death_component.tscn" id="4_bq7hi"]
 [ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hurtbox_component.tscn" id="4_elloc"]
-[ext_resource type="Resource" uid="uid://b7anwn01hid32" path="res://resources/loot_tables/rat_loot_table.tres" id="5_loot_table"]
 [ext_resource type="PackedScene" uid="uid://cs0agig0qlot3" path="res://scenes/component/hitflash_component.tscn" id="8_5py58"]
 
 [sub_resource type="Animation" id="Animation_elloc"]
@@ -89,15 +88,11 @@ libraries/ = SubResource("AnimationLibrary_jkye5")
 autoplay = &"walk"
 
 [node name="HealthComponent" parent="." unique_id=1615724963 instance=ExtResource("2_isd1k")]
-max_health = 10.0
 
 [node name="LootDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("3_pcrk2")]
-drop_percent = 0.9
 health_component = NodePath("../HealthComponent")
-loot_table = ExtResource("5_loot_table")
 
 [node name="VelocityComponent" parent="." unique_id=528096772 instance=ExtResource("4_1hd8u")]
-max_speed = 20
 
 [node name="HitflashComponent" parent="." unique_id=207966303 node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("8_5py58")]
 health_component = NodePath("../HealthComponent")

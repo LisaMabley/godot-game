@@ -5,18 +5,35 @@ extends Node
 
 var current_upgrades = {}
 var upgrade_pool: WeightedTable = WeightedTable.new()
-
-var upgrade_axe = preload("res://resources/upgrades/axe.tres")
-var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
-var upgrade_sword_rate = preload("res://resources/upgrades/sword_attack_rate.tres")
-var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
+var upgrades = {}
 
 
 func _ready() -> void:
-	upgrade_pool.add_item(upgrade_axe, 5, upgrade_axe.id)
-	upgrade_pool.add_item(upgrade_sword_damage, 10, upgrade_sword_damage.id)
-	upgrade_pool.add_item(upgrade_sword_rate, 10, upgrade_sword_rate.id)
+	for id in Balance.UPGRADES:
+		upgrades[id] = _create_upgrade(id)
+		if not Balance.UPGRADES[id].has("unlocked_by"):
+			_add_to_pool(id)
 	experience_manager.level_up.connect(_on_level_up)
+
+
+func _create_upgrade(id: String) -> AbilityUpgrade:
+	var data = Balance.UPGRADES[id]
+	var upgrade: AbilityUpgrade
+	if data.has("ability_controller_scene"):
+		upgrade = Ability.new()
+		upgrade.ability_controller_scene = load(data["ability_controller_scene"])
+	else:
+		upgrade = AbilityUpgrade.new()
+
+	upgrade.id = id
+	upgrade.name = data["name"]
+	upgrade.description = data["description"].format(data)
+	upgrade.max_quantity = data["max_quantity"]
+	return upgrade
+
+
+func _add_to_pool(id: String):
+	upgrade_pool.add_item(upgrades[id], Balance.UPGRADES[id]["weight"], id)
 
 
 func _apply_upgrade(upgrade: AbilityUpgrade):
@@ -40,8 +57,12 @@ func _apply_upgrade(upgrade: AbilityUpgrade):
 
 
 func _update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
-	if chosen_upgrade.id == upgrade_axe.id:
-		upgrade_pool.add_item(upgrade_axe_damage, 10, upgrade_axe_damage.id)
+	if current_upgrades[chosen_upgrade.id]["quantity"] != 1:
+		return
+
+	for id in Balance.UPGRADES:
+		if Balance.UPGRADES[id].get("unlocked_by") == chosen_upgrade.id:
+			_add_to_pool(id)
 
 
 func _pick_upgrades():

@@ -20,6 +20,10 @@ func remove_item(item_to_remove):
 		weight_sum += item["weight"]
 
 
+func has_item_id(id: String) -> bool:
+	return items.any(func (item): return item["id"] == id)
+
+
 func update_item_weight(id_to_update, new_weight: int):
 	for item in items:
 		if item["id"] == id_to_update:

@@ -9,7 +9,7 @@ You move; your weapons attack on their own. Defeated enemies drop experience gem
 - **Auto-attacking abilities.** The sword strikes the nearest enemy. The axe can be unlocked as an upgrade and spins out from the player.
 - **Upgrades on level-up.** Pick one of two randomly offered cards: new abilities, damage boosts, and faster attacks. Upgrades have stack limits, and some only appear once you've unlocked the ability they improve.
 - **Rising difficulty.** Enemies spawn faster over time, and tougher enemy types join the mix as the round goes on.
-- **Loot drops.** Enemies can drop health vials, chosen from weighted loot tables.
+- **Loot drops.** Enemies can drop experience gems and health vials, chosen from weighted loot tables.
 - **Game feel.** Hit flashes, floating damage numbers, death animations, and animated pickups.
 
 ## Controls
@@ -37,13 +37,15 @@ scenes/
   ability/       Each weapon: a controller that fires it, plus the attack scene itself
   ui/            HUD, upgrade cards, end screen, floating text
   autoload/      GameEvents, a global signal bus
-resources/       Custom Resource types and data: upgrades and loot tables
-scripts/         Shared utilities (WeightedTable)
+resources/       Custom Resource types (upgrades)
+scripts/         Shared utilities (WeightedTable) and balance.gd, the one place for tuning numbers
 assets/          Sprites and tiles (potential_sprites/ holds art not yet in use)
 theme/           UI theme and font
 ```
 
 Game objects are built by composition: an enemy is a `CharacterBody2D` plus components like `HealthComponent`, `HurtboxComponent` (takes damage), and `VelocityComponent`. Weapons carry a `HitboxComponent` (deals damage). Systems that don't know about each other talk through the `GameEvents` autoload.
+
+**Tuning balance:** enemy health, speed, drop chances and loot, the spawn schedule, weapon damage and cooldowns, and the level-up upgrades (names, descriptions, effects, how often they appear) all live in [`scripts/balance.gd`](scripts/balance.gd). Edit the numbers there; you don't need to touch any scenes.
 
 ## Credits
 

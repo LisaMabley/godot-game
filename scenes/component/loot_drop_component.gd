@@ -1,26 +1,27 @@
 extends Node
 
-@export_range(0, 1) var drop_percent: float = .70
 @export var health_component: Node
-@export var loot_table: LootDropTable
 
+var drop_percent: float = 0
 var weighted_table = WeightedTable.new()
 
 
 func _ready() -> void:
-	if loot_table == null or loot_table.entries.is_empty():
-		push_error("LootDropComponent requires a loot table with at least one entry.")
-		return
-
-	for index in loot_table.entries.size():
-		var entry = loot_table.entries[index]
-		if entry == null or entry.drop_scene == null or entry.weight <= 0:
-			push_error("LootDropComponent has an invalid loot table entry at index %d." % index)
-			return
-
-		weighted_table.add_item(entry.drop_scene, entry.weight, str(index))
-
 	(health_component as HealthComponent).died.connect(_on_died)
+
+
+func set_loot(new_drop_percent: float, loot: Array) -> void:
+	drop_percent = new_drop_percent
+	weighted_table = WeightedTable.new()
+
+	for entry in loot:
+		var drop_id = entry[0]
+		var weight = entry[1]
+		if not Balance.DROP_SCENES.has(drop_id) or weight <= 0:
+			push_error("LootDropComponent has an invalid loot entry: %s." % [entry])
+			continue
+
+		weighted_table.add_item(Balance.DROP_SCENES[drop_id], weight, drop_id)
 
 
 func _on_died():

@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cngqcvqr70c28" path="res://scenes/component/hurtbox_component.tscn" id="4_1w8vr"]
 [ext_resource type="Texture2D" uid="uid://m21p8v22ng36" path="res://scenes/game_object/enemies/bug_enemy/bug_2.png" id="8_j8xus"]
 [ext_resource type="Texture2D" uid="uid://dbqj3vxcei0nv" path="res://scenes/game_object/enemies/bug_enemy/bug_3.png" id="9_flp3v"]
-[ext_resource type="Resource" uid="uid://ouy4v3usx25v" path="res://resources/loot_tables/bug_loot_table.tres" id="10_loot_table"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o3d3p"]
 radius = 8.0
@@ -41,12 +40,9 @@ script = ExtResource("1_o3d3p")
 [node name="HealthComponent" parent="." unique_id=1615724963 instance=ExtResource("2_tkb66")]
 
 [node name="LootDropComponent" parent="." unique_id=1354365006 node_paths=PackedStringArray("health_component") instance=ExtResource("4_1me1v")]
-drop_percent = 0.4
 health_component = NodePath("../HealthComponent")
-loot_table = ExtResource("10_loot_table")
 
 [node name="VelocityComponent" parent="." unique_id=528096772 instance=ExtResource("3_1me1v")]
-max_speed = 16
 
 [node name="HurtboxComponent" parent="." unique_id=1789079162 node_paths=PackedStringArray("health_component") instance=ExtResource("4_1w8vr")]
 health_component = NodePath("../HealthComponent")
